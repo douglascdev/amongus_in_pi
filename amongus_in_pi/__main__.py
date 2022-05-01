@@ -25,18 +25,17 @@ def pi():
     return +s               # unary plus applies the new precision
 
 
-def find_amonguses_in_num(num: str, amongus: str) -> Iterator[int]:
+def find_amonguses_in_num(num_str: str, amongus: str) -> Iterator[int]:
     """
     Yield every index of digit of num where we find the hiding amongus
-    :param num: binary representation of the integer to search for, converted to a string
+    :param num_str: integer to search for converted to a string
     :param amongus: string of binary digits representing the amongus
     :return: every index of hiding amonguses
     """
-    # Remove the "0x" string returned as a prefix by the bin function
-    str_num = bin(int(num))[2:]
+    num_str = "".join(("0" if int(digit_chr) <= 4 else "1" for digit_chr in num_str))
 
-    for i in range(len(str_num)):
-        if str_num[i:i+len(amongus)] == amongus:
+    for i in range(len(num_str)):
+        if num_str[i:i + len(amongus)] == amongus:
             yield i
 
 
@@ -54,7 +53,7 @@ def main():
     with open(pathlib.Path(__file__).parent / "bigpi.txt", "r") as file:
         BIG_PI_STR = file.readline()
 
-    """
+    amongus_str = """
        ________
     __|  ______|
     |    |_____|
@@ -67,11 +66,12 @@ def main():
         1, 1, 1, 1,
         0, 1, 0, 1,
     ]
+    print(amongus_str)
     amongus = "".join(map(str, amongus))
 
-    for amongus_pos in find_amonguses_in_num(num=BIG_PI_STR, amongus=amongus):
+    for amongus_pos in find_amonguses_in_num(num_str=BIG_PI_STR, amongus=amongus):
         end_pos = amongus_pos+len(amongus)
-        print(f"Something is sus about digits => {amongus_pos} to {end_pos}")
+        print(f"Something sus about digits => {amongus_pos} to {end_pos}")
 
 
 if __name__ == "__main__":
