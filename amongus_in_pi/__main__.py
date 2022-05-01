@@ -32,8 +32,9 @@ def find_amonguses_in_num(num: str, amongus: str) -> Iterator[int]:
     :param amongus: string of binary digits representing the amongus
     :return: every index of hiding amonguses
     """
+    # Remove the "0x" string returned as a prefix by the bin function
     str_num = bin(int(num))[2:]
-    # return (i for i in range(len(str_num)) if str_num[i:i+len(amongus)] == amongus)
+
     for i in range(len(str_num)):
         if str_num[i:i+len(amongus)] == amongus:
             yield i
