@@ -1,4 +1,4 @@
-# Among Us in pi
+# Among Us in π
 
 ```
    ________
@@ -17,7 +17,13 @@ An algorithm that scans the digits of pi for the amongus above in binary form:
 0, 1, 0, 1,
 ```
 
+## But.. why?
+
+I don't know, why not?
+
 After seeing [this video](https://www.youtube.com/watch?v=dET2l8l3upU) by Matt Parker I wanted to implement my own algorithm to search for...amonguses? Amongi? Well, let's see how it goes.
+
+## How?
 
 From what I understand Matt's way of doing it was to use pi calculated to a certain precision, ignore the integer part of pi, treat the decimals as an integer and convert the number to binary. This approach leads to very different binary representations of the number depending on the precision used to calculate pi:
 ```
